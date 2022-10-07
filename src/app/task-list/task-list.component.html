@@ -1,0 +1,33 @@
+<div class="container">
+    <input class='input' type="text" [(ngModel)]="searchText" (input)="search()" placeholder="Search" /> 
+    <table class="table">
+        <tr>
+            <th >WO ID</th>
+            <th >Description</th>
+            <th >Received date</th>
+            <th >Assigned to
+                <table class="nested-table">
+                    <tr>
+                        <th class="nested-header">Person</th>
+                        <th class="nested-header">Status</th>
+                    </tr>
+                </table>
+            </th>
+            <th>Status</th>
+            <th>Priority</th>
+        </tr>
+        <tr *ngFor="let task of tasks">
+            <td>{{task.work_order_id}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.received_date}}</td>
+            <td>
+                <tr *ngFor="let person of task.assigned_to">
+                    <td >{{person.person_name}}</td>
+                    <td>{{person.status}}</td>
+                </tr>
+            </td>
+            <td>{{task.status}}</td>
+            <td>{{task.priority}}</td>
+        </tr>
+    </table>
+</div>

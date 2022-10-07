@@ -1,0 +1,33 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    margin-bottom: 10px;
+}
+
+.table {
+    border: 1px black solid;
+}
+
+th {
+    background-color: lightgray;
+    border: 1px black solid;
+}
+
+td{
+    border: 1px gray solid;
+}
+
+.nested-table {
+    width: 100%;
+}
+
+.nested-header {
+    background-color: gray;
+    border: 1px black solid;
+}
