@@ -1,30 +1,37 @@
 <div class="container">
-    <input class='input' type="text" [(ngModel)]="searchText" (input)="search()" placeholder="Search" /> 
+    <input class='input' type="text" [(ngModel)]="searchText" (ngModelChange)="search($event)" placeholder="Search" />
     <table class="table">
-        <tr>
-            <th >WO ID</th>
-            <th >Description</th>
-            <th >Received date</th>
-            <th >Assigned to
-                <table class="nested-table">
-                    <tr>
-                        <th class="nested-header">Person</th>
-                        <th class="nested-header">Status</th>
-                    </tr>
-                </table>
-            </th>
-            <th>Status</th>
-            <th>Priority</th>
-        </tr>
-        <tr *ngFor="let task of tasks">
+        <thead>
+            <tr>
+              <th rowspan="2">WO ID</th>
+              <th rowspan="2">Description</th>
+              <th rowspan="2">Received date</th>
+              <th colspan="2">Assigned to</th>
+              <th rowspan="2">Status </th>
+              <th rowspan="2">Priority</th>
+            </tr>
+            <tr>
+              <th>Person</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+        <tr *ngFor="let task of filteredTasks">
             <td>{{task.work_order_id}}</td>
             <td>{{task.description}}</td>
             <td>{{task.received_date}}</td>
             <td>
-                <tr *ngFor="let person of task.assigned_to">
-                    <td >{{person.person_name}}</td>
-                    <td>{{person.status}}</td>
-                </tr>
+                <ng-container *ngFor="let person of task.assigned_to">
+                    <tr>
+                        <td>{{person.person_name}}</td>
+                    </tr>
+                </ng-container>
+            </td>
+            <td>
+                <ng-container *ngFor="let person of task.assigned_to">
+                    <tr>
+                        <td>{{person.status}}</td>
+                    </tr>
+                </ng-container>
             </td>
             <td>{{task.status}}</td>
             <td>{{task.priority}}</td>
